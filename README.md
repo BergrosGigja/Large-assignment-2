@@ -51,10 +51,10 @@ Below the functionality of the assignment is described:
 		* db.js - The connection to the database should be setup within this folder and connected to the schemas. The schemas should then be exported from this file
 
 ## Structure (30%)
-	* **(30%)** The solution must be implemented using Node with ExpressJS
-	* **(30%)** The solution must make use of MongoDB with Mongoose to retrieve/store data
-	* **(30%)** The solution should be modular and follow the SRP principle, what this means is that it should follow the directory structure seen in the Folder structure section below
-	* **(10%)** All packages should be installed using either NPM or Yarn and they should be tracked within package.json
+**(30%)** The solution must be implemented using Node with ExpressJS
+**(30%)** The solution must make use of MongoDB with Mongoose to retrieve/store data
+**(30%)** The solution should be modular and follow the SRP principle, what this means is that it should follow the directory structure seen in the Folder structure section below
+**(10%)** All packages should be installed using either NPM or Yarn and they should be tracked within package.json
 
 ### Folder structure
 	* mansion_de_subastas/
