@@ -1,5 +1,5 @@
 const EventEmitter = require('events');
-
+const Art = require('../data/db')
 class ArtService extends EventEmitter {
     constructor() {
         super();
@@ -10,8 +10,10 @@ class ArtService extends EventEmitter {
         };
     }
     getAllArts() {
-        // Your implementation goes here
-        // Should emit a GET_ALL_ARTS event when the data is available
+        Art.find({}, (err, arts) => {
+            if(err) {/*take care of error*/}
+            this.emit(this.events.GET_ALL_ARTS, arts);
+        });
     };
 
     getArtById(id) {
