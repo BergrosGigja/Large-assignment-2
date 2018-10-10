@@ -2,9 +2,16 @@ const express = require('express');
 const app = express();
 const port = 3000;
 const ArtistService = require('./services/artistService');
+const ArtService = require('./services/artService')
 
 app.get('/api/arts', (req, res) => {
-    //TODO: implement get all art
+    const artService = new ArtService();
+
+    artService.on(artService.events.GET_ALL_ARTS, data => {
+        res.json(data);
+    });
+
+    artService.getAllArts();
 });
 
 app.get('/api/arts/:id', (req, res) => {
