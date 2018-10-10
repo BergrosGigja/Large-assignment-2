@@ -14,6 +14,7 @@ module.exports = {
     Auction: connection.model('Auction', auctionSchema),
     AuctionBid: connection.model('AuctionBid', auctionBidSchema),
     Customer: connection.model('Customer', customerSchema),
+<<<<<<< HEAD
     connection
     //Order: connection.model('Order', orderSchema)
 };
