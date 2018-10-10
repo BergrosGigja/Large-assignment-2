@@ -4,7 +4,7 @@ const artistSchema = require('../schemas/artist');
 const auctionSchema = require('../schemas/auction');
 const auctionBidSchema = require('../schemas/auctionBid');
 const customerSchema = require('../schemas/customer');
-const orderSchema = require('../schemas/order');
+//const orderSchema = require('../schemas/order');
 
 const connection = mongoose.createConnection('mongodb://bergros:abc123@ds161455.mlab.com:61455/large-assignment-2', { useNewUrlParser: true });
 
@@ -14,5 +14,5 @@ module.exports = {
     Auction: connection.model('Auction', auctionSchema),
     AuctionBid: connection.model('AuctionBid', auctionBidSchema),
     Customer: connection.model('Customer', customerSchema),
-    Order: connection.model('Order', orderSchema)
+    //Order: connection.model('Order', orderSchema)
 };
