@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const port = 3000;
+const ArtistService = require('./services/artistService');
 
 app.get('/api/arts', (req, res) => {
     //TODO: implement get all art
@@ -15,7 +16,13 @@ app.post('/api/arts', (req, res) => {
 });
 
 app.get('/api/artists', (req, res) => {
-    //TODO: implement get all artist
+    const artistService = new ArtistService();
+
+    artistService.on(artistService.events.GET_ALL_ARTISTS, data => {
+        res.json(data);
+    });
+
+    artistService.getAllArtists();
 });
 
 app.get('/api/artists/:id', (req, res) => {
