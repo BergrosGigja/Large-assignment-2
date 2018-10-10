@@ -1,5 +1,6 @@
 const EventEmitter = require('events');
-const Art = require('../data/db')
+const {Art} = require('../data/db')
+
 class ArtService extends EventEmitter {
     constructor() {
         super();
@@ -11,7 +12,7 @@ class ArtService extends EventEmitter {
     }
     getAllArts() {
         Art.find({}, (err, arts) => {
-            if(err) {/*take care of error*/}
+            if(err) {throw new Error(err);}
             this.emit(this.events.GET_ALL_ARTS, arts);
         });
     };
