@@ -1,5 +1,5 @@
 const EventEmitter = require('events');
-const Artist = require('../data/db');
+const { Artist } = require('../data/db');
 
 class ArtistService extends EventEmitter {
     constructor() {
@@ -10,6 +10,7 @@ class ArtistService extends EventEmitter {
             CREATE_ARTIST: 'CREATE_ARTIST'
         };
     }
+
     getAllArtists() {
         Artist.find({}, (err, artists) => {
             if (err) {throw new Error(err);}
