@@ -6,7 +6,7 @@ const auctionBidSchema = require('../schemas/auctionBid');
 const customerSchema = require('../schemas/customer');
 const orderSchema = require('../schemas/order');
 
-const connection = mongoose.createConnection('insert-your-mongodb-connection-string-here', { useNewUrlParser: true });
+const connection = mongoose.createConnection('mongodb://bergros:abc123@ds161455.mlab.com:61455/large-assignment-2', { useNewUrlParser: true });
 
 module.exports = {
     Art: connection.model('Art', artSchema),
