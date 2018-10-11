@@ -30,6 +30,7 @@ router.get('/arts/:id', (req, res) => {
 
 router.post('/arts', (req, res) => {
     const {body} = req;
+    console.log(body);
     const artService = new ArtService();
 
     artService.on(artService.events.CREATE_ART, data => {

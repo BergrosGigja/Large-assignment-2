@@ -25,9 +25,10 @@ class ArtService extends EventEmitter {
     };
 
     createArt(art) {
-        Art.create({art}, err => {
+        console.log(art);
+        Art.create(art, err => {
             if (err) {throw new Error(err);}
-            this.emit(this.events.CREATE_ART);
+            this.emit(this.events.CREATE_ART, art);
         });
     };
 };
