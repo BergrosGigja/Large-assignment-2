@@ -12,22 +12,24 @@ class ArtService extends EventEmitter {
     }
     getAllArts() {
         Art.find({}, (err, arts) => {
-            if(err) {throw new Error(err);}
-            this.emit(this.events.GET_ALL_ARTS, arts);
+            if (err) { this.emit('error', { statusCode: 500, message: err }); }
+            else if (!arts) { this.emit('error', { statusCode: 404, message: 'Not found' }); }
+            else { this.emit(this.events.GET_ALL_ARTS, arts); }
         });
     };
 
     getArtById(id) {
-        Art.findById(id, (err, art) => {
-            if (err) {throw new Error(err);}
-            this.emit(this.events.GET_ART_BY_ID, art);
+        Art.findById(id, (err, result) => {
+            if (err) { this.emit('error', { statusCode: 500, message: err }); }
+            else if (!result) { this.emit('error', { statusCode: 404, message: 'Not found' }); }
+            else { this.emit(this.events.GET_ART_BY_ID, result); }
         });
     };
 
     createArt(art) {
         Art.create(art, err => {
-            if (err) {throw new Error(err);}
-            this.emit(this.events.CREATE_ART, art);
+            if (err) { this.emit('error', { statusCode: 500, message: err }); }
+            else { this.emit(this.events.CREATE_ART, art); }
         });
     };
 };
