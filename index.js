@@ -4,17 +4,38 @@ const router = express.Router();
 const app = express();
 const port = 3000;
 const ArtistService = require('./services/artistService');
+const ArtService = require('./services/artService')
 
 app.get('/api/arts', (req, res) => {
-    //TODO: implement get all art
+    const artService = new ArtService();
+
+    artService.on(artService.events.GET_ALL_ARTS, data => {
+        res.json(data);
+    });
+
+    artService.getAllArts();
 });
 
 app.get('/api/arts/:id', (req, res) => {
-    //TODO: implement get art by id
+    const artService = new ArtService();
+    const {id} = req.params;
+
+    artService.on(artService.events.GET_ART_BY_ID, data => {    
+        res.json(data);
+    });
+
+    artService.getArtById(id);
 });
 
 app.post('/api/arts', (req, res) => {
-    //TODO: implement create new art
+    const {body} = req;
+    const artService = new ArtService();
+
+    artService.on(artService.events.CREATE_ART, data => {
+        res.json(data);
+    });
+
+    artService.createArt(body);
 });
 
 app.get('/api/artists', (req, res) => {
@@ -28,7 +49,14 @@ app.get('/api/artists', (req, res) => {
 });
 
 app.get('/api/artists/:id', (req, res) => {
-    //TODO: implement get artist by id
+    const {id} = req.params;
+    const artistService = new ArtistService();
+
+    artistService.on(artistService.events.GET_ARTIST_BY_ID, data => {
+        res.json(data);
+    });
+
+    artistService.getArtistById(id);
 });
 
 router.post('/artists', (req, res) => {
