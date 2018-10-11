@@ -153,11 +153,27 @@ router.post('/auctions', (req, res) => {
 });
 
 router.get('/auctions/:id/bids', (req, res) => {
-    //TODO: implement get all bids for a certain auction
+    const {id} = req.params;
+    const auctionService = new AuctionService();
+
+    auctionService.on(auctionService.events.GET_AUCTION_BIDS_WITHIN_AUCTION, data => {
+        res.json(data);
+    });
+
+    auctionService.getAuctionBidsWithinAuction(id);
 });
 
 router.post('/auctions/:id/bids', (req, res) => {
-    //TODO: implement create new auction bid
+    const {id} = req.params;
+    const customerId = req.body.customerId;
+    const price = req.body.price;
+    const auctionService = new AuctionService();
+
+    auctionService.on(auctionService.events.PLACE_NEW_BID, data => {
+        res.json(data);
+    });
+
+    auctionService.placeNewBid(id, customerId, price);
 });
 
 app.use(bodyParser.json());
