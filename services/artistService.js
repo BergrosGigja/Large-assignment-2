@@ -26,9 +26,9 @@ class ArtistService extends EventEmitter {
     };
 
     createArtist(artist) {
-        Artist.create({artist}, err => {
+        Artist.create(artist, err => {
             if (err) {throw new Error(err);}
-            this.emit(this.events.CREATE_ARTIST);
+            this.emit(this.events.CREATE_ARTIST, artist);
         });
     };
 };

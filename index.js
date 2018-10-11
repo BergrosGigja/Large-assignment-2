@@ -4,7 +4,6 @@ const port = 3000;
 const ArtistService = require('./services/artistService');
 const ArtService = require('./services/artService')
 
-
 app.get('/api/arts', (req, res) => {
     const artService = new ArtService();
 
@@ -48,7 +47,14 @@ app.get('/api/artists', (req, res) => {
 });
 
 app.get('/api/artists/:id', (req, res) => {
-    //TODO: implement get artist by id
+    const {id} = req.params;
+    const artistService = new ArtistService();
+
+    artistService.on(artistService.events.GET_ARTIST_BY_ID, data => {
+        res.json(data);
+    });
+
+    artistService.getArtistById(id);
 });
 
 app.post('/api/artists', (req, res) => {
