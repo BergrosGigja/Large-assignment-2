@@ -112,7 +112,14 @@ router.post('/customers', (req, res) => {
 });
 
 router.get('/customers/:id/auction-bids', (req, res) => {
-    //TODO: implement get all auction bids associated with a customer
+    const {id} = req.params;
+    const customerService = new CustomerService();
+
+    customerService.on(customerService.events.GET_CUSTOMER_AUCTION_BIDS, data => {
+        res.json(data);
+    });
+
+    customerService.getCustomerAuctionBids(id);
 });
 
 router.get('/auctions', (req, res) => {
