@@ -11,6 +11,8 @@ const CustomerService = require('./services/customerService');
 router.get('/arts', (req, res) => {
     const artService = new ArtService();
 
+    artService.on('error', err => res.status(err.statusCode).send(err.message))
+
     artService.on(artService.events.GET_ALL_ARTS, data => {
         res.json(data);
     });
@@ -22,17 +24,21 @@ router.get('/arts/:id', (req, res) => {
     const artService = new ArtService();
     const {id} = req.params;
 
+    artService.on('error', err => res.status(err.statusCode).send(err.message))
+  
     artService.on(artService.events.GET_ART_BY_ID, data => {    
         res.json(data);
     });
 
-    artService.getArtById(id);
+    const art = artService.getArtById(id);
 });
 
 router.post('/arts', (req, res) => {
     const {body} = req;
     console.log(body);
     const artService = new ArtService();
+
+    artService.on('error', err => res.status(err.statusCode).send(err.message))
 
     artService.on(artService.events.CREATE_ART, data => {
         res.json(data);
