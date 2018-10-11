@@ -27,8 +27,9 @@ app.get('/api/arts/:id', (req, res) => {
     artService.getArtById(id);
 });
 
-app.post('/api/arts', (req, res) => {
+router.post('/arts', (req, res) => {
     const {body} = req;
+    console.log(body);
     const artService = new ArtService();
 
     artService.on(artService.events.CREATE_ART, data => {
