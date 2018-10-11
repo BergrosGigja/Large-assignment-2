@@ -44,9 +44,11 @@ class AuctionService extends EventEmitter {
         });
 	};
 
-	getAuctionBidsWithinAuction(auctionId) {
-		// Your implementation goes here
-        // Should emit a GET_AUCTION_BIDS_WITHIN_AUCTION event when the data is available
+	getAuctionBidsWithinAuction(_auctionId) {
+		AuctionBid.find({auctionId: _auctionId}, (err, auctionBids) => {
+			if (err) {throw new Error(err);}
+            this.emit(this.events.GET_AUCTION_BIDS_WITHIN_AUCTION, auctionBids);
+        });
 	};
 
 	placeNewBid(_auctionId, _customerId, _price) {
