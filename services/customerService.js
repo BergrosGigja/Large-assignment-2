@@ -14,7 +14,7 @@ class CustomerService extends EventEmitter {
     getAllCustomers() {
         Customer.find({}, (err, customers) => {
             if (err) {throw new Error(err);}
-            this.emit(this.events.GET_ALL_Customers, customers);
+            this.emit(this.events.GET_ALL_CUSTOMERS, customers);
         });
     };
 
