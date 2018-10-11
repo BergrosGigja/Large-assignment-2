@@ -30,7 +30,7 @@ router.get('/arts/:id', (req, res) => {
         res.json(data);
     });
 
-    const art = artService.getArtById(id);
+    artService.getArtById(id);
 });
 
 router.post('/arts', (req, res) => {
@@ -50,6 +50,8 @@ router.post('/arts', (req, res) => {
 router.get('/artists', (req, res) => {
     const artistService = new ArtistService();
 
+    artistService.on('error', err => res.status(err.statusCode).send(err.message))
+
     artistService.on(artistService.events.GET_ALL_ARTISTS, data => {
         res.json(data);
     });
@@ -60,6 +62,8 @@ router.get('/artists', (req, res) => {
 router.get('/artists/:id', (req, res) => {
     const {id} = req.params;
     const artistService = new ArtistService();
+
+    artistService.on('error', err => res.status(err.statusCode).send(err.message))
 
     artistService.on(artistService.events.GET_ARTIST_BY_ID, data => {
         res.json(data);
@@ -72,6 +76,8 @@ router.post('/artists', (req, res) => {
     const {body} = req;
     const artistService = new ArtistService();
 
+    artistService.on('error', err => res.status(err.statusCode).send(err.message))
+
     artistService.on(artistService.events.CREATE_ARTIST, data => {
         res.json(data);
     });
@@ -81,6 +87,8 @@ router.post('/artists', (req, res) => {
 
 router.get('/customers', (req, res) => {
     const customerService = new CustomerService();
+
+    customerService.on('error', err => res.status(err.statusCode).send(err.message))
 
     customerService.on(customerService.events.GET_ALL_CUSTOMERS, data => {
         res.json(data);
@@ -92,6 +100,8 @@ router.get('/customers', (req, res) => {
 router.get('/customers/:id', (req, res) => {
     const {id} = req.params;
     const customerService = new CustomerService();
+    
+    customerService.on('error', err => res.status(err.statusCode).send(err.message))
 
     customerService.on(customerService.events.GET_CUSTOMER_BY_ID, data => {
         res.json(data);
@@ -103,6 +113,8 @@ router.get('/customers/:id', (req, res) => {
 router.post('/customers', (req, res) => {
     const {body} = req;
     const customerService = new CustomerService();
+
+    customerService.on('error', err => res.status(err.statusCode).send(err.message))
 
     customerService.on(customerService.events.CREATE_CUSTOMER, data => {
         res.json(data);
