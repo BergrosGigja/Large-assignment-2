@@ -4,9 +4,10 @@ const router = express.Router();
 const app = express();
 const port = 3000;
 const ArtistService = require('./services/artistService');
-const ArtService = require('./services/artService')
+const ArtService = require('./services/artService');
+const AuctionService = require('./services/auctionService');
 
-app.get('/api/arts', (req, res) => {
+router.get('/arts', (req, res) => {
     const artService = new ArtService();
 
     artService.on(artService.events.GET_ALL_ARTS, data => {
@@ -16,7 +17,7 @@ app.get('/api/arts', (req, res) => {
     artService.getAllArts();
 });
 
-app.get('/api/arts/:id', (req, res) => {
+router.get('/arts/:id', (req, res) => {
     const artService = new ArtService();
     const {id} = req.params;
 
@@ -27,8 +28,9 @@ app.get('/api/arts/:id', (req, res) => {
     artService.getArtById(id);
 });
 
-app.post('/api/arts', (req, res) => {
+router.post('/arts', (req, res) => {
     const {body} = req;
+    console.log(body);
     const artService = new ArtService();
 
     artService.on(artService.events.CREATE_ART, data => {
@@ -38,7 +40,7 @@ app.post('/api/arts', (req, res) => {
     artService.createArt(body);
 });
 
-app.get('/api/artists', (req, res) => {
+router.get('/artists', (req, res) => {
     const artistService = new ArtistService();
 
     artistService.on(artistService.events.GET_ALL_ARTISTS, data => {
@@ -48,7 +50,7 @@ app.get('/api/artists', (req, res) => {
     artistService.getAllArtists();
 });
 
-app.get('/api/artists/:id', (req, res) => {
+router.get('/artists/:id', (req, res) => {
     const {id} = req.params;
     const artistService = new ArtistService();
 
@@ -70,43 +72,63 @@ router.post('/artists', (req, res) => {
     artistService.createArtist(body);
 });
 
-app.get('/api/customers', (req, res) => {
+router.get('/customers', (req, res) => {
     //TODO: implement get all customers
 });
 
-app.get('/api/customers/:id', (req, res) => {
+router.get('/customers/:id', (req, res) => {
     //TODO: implement get customers by id
 });
 
-app.post('/api/customers', (req, res) => {
+router.post('/customers', (req, res) => {
     //TODO: implement create new customer
 });
 
-app.get('/api/customers/:id/auction-bids', (req, res) => {
+router.get('/customers/:id/auction-bids', (req, res) => {
     //TODO: implement get all auction bids associated with a customer
 });
 
-app.get('/api/auctions', (req, res) => {
-    //TODO: implement get all auctions
+router.get('/auctions', (req, res) => {
+    const auctionService = new AuctionService();
+
+    auctionService.on(auctionService.events.GET_ALL_AUCTIONS, data => {
+        res.json(data);
+    });
+
+    auctionService.getAllAuctions();
 });
 
-app.get('/api/auctions/:id', (req, res) => {
-    //TODO: implement get auction by id
+router.get('/auctions/:id', (req, res) => {
+    const {id} = req.params;
+    const auctionService = new AuctionService();
+
+    auctionService.on(auctionService.events.GET_AUCTION_BY_ID, data => {
+        res.json(data);
+    });
+
+    auctionService.getAuctionById(id);
 });
 
-app.get('/api/auctions/:id/winner', (req, res) => {
+router.get('/auctions/:id/winner', (req, res) => {
     //TODO: implement get winner of certain auction
 });
 
-app.post('/api/auctions', (req, res) => {
-    //TODO: implement create new auction
+router.post('/auctions', (req, res) => {
+    const {body} = req;
+    const auctionService = new AuctionService();
+
+    auctionService.on(auctionService.events.CREATE_AUCTION, data => {
+        res.json(data);
+    });
+
+    auctionService.createAuction(body);
 });
 
-app.get('/api/auctions/:id/bids', (req, res) => {
+router.get('/auctions/:id/bids', (req, res) => {
     //TODO: implement get all bids for a certain auction
 });
 
-app.post('/api/auctions/:id/bids', (req, res) => {
+router.post('/auctions/:id/bids', (req, res) => {
     //TODO: implement create new auction bid
 });
 
