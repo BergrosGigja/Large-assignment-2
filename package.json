@@ -1,0 +1,26 @@
+{
+  "name": "large-assignment-2",
+  "version": "1.0.0",
+  "description": "You have been hired as a lead developer for an art-selling company called Mansion de Subastas.\r They are obsessed with NodeJS and will not accept anything else as their tech stack. Along with\r NodeJS they want ExpressJS, MongoDB (with Mongoose). As always failure is not an option,\r these artist sellers demand perfection!",
+  "main": "index.js",
+  "dependencies": {
+    "cli-progress": "^2.1.0",
+    "express": "^4.16.3",
+    "mongoose": "^5.3.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "seeds": "node ./data/seeds.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BergrosGigja/Large-assignment-2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BergrosGigja/Large-assignment-2/issues"
+  },
+  "homepage": "https://github.com/BergrosGigja/Large-assignment-2#readme"
+}
