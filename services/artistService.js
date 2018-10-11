@@ -13,22 +13,24 @@ class ArtistService extends EventEmitter {
 
     getAllArtists() {
         Artist.find({}, (err, artists) => {
-            if (err) {throw new Error(err);}
-            this.emit(this.events.GET_ALL_ARTISTS, artists);
+            if (err) { this.emit('error', { statusCode: 500, message: err }); }
+            else if (!artists) { this.emit('error', { statusCode: 404, message: 'Not found' }); }
+            else { this.emit(this.events.GET_ALL_ARTISTS, artists); }
         });
     };
 
     getArtistById(id) {
         Artist.findById(id, (err, artist) => {
-            if (err) {throw new Error(err);}
-            this.emit(this.events.GET_ARTIST_BY_ID, artist);
+            if (err) { this.emit('error', { statusCode: 500, message: err }); }
+            else if (!result) { this.emit('error', { statusCode: 404, message: 'Not found' }); }
+            else { this.emit(this.events.GET_ARTIST_BY_ID, artist); }
         });
     };
 
     createArtist(artist) {
         Artist.create(artist, err => {
-            if (err) {throw new Error(err);}
-            this.emit(this.events.CREATE_ARTIST, artist);
+            if (err) { this.emit('error', { statusCode: 500, message: err }); }
+            else { this.emit(this.events.CREATE_ARTIST, artist); }
         });
     };
 };
