@@ -109,7 +109,14 @@ router.get('/auctions/:id', (req, res) => {
 });
 
 router.get('/auctions/:id/winner', (req, res) => {
-    //TODO: implement get winner of certain auction
+    const {id} = req.params;
+    const auctionService = new AuctionService();
+
+    auctionService.on(auctionService.events.GET_AUCTION_WINNER, data => {
+        res.json(data);
+    });
+
+    auctionService.getAuctionWinner(id);
 });
 
 router.post('/auctions', (req, res) => {
