@@ -1,5 +1,5 @@
 const EventEmitter = require('events');
-const { Auction, Customer } = require('../data/db');
+const { Auction, Customer, AuctionBid } = require('../data/db');
 
 class AuctionService extends EventEmitter {
 	constructor() {
@@ -44,14 +44,22 @@ class AuctionService extends EventEmitter {
         });
 	};
 
-	getAuctionBidsWithinAuction(auctionId) {
-		// Your implementation goes here
-        // Should emit a GET_AUCTION_BIDS_WITHIN_AUCTION event when the data is available
+	getAuctionBidsWithinAuction(_auctionId) {
+		AuctionBid.find({auctionId: _auctionId}, (err, auctionBids) => {
+			if (err) {throw new Error(err);}
+            this.emit(this.events.GET_AUCTION_BIDS_WITHIN_AUCTION, auctionBids);
+        });
 	};
 
-	placeNewBid(auctionId, customerId, price) {
-		// Your implementation goes here
-        // Should emit a PLACE_NEW_BID event when the data is available
+	placeNewBid(_auctionId, _customerId, _price) {
+		AuctionBid.create({
+			auctionId: _auctionId,
+			customerId: _customerId,
+			price: _price
+		}, (err, auctionBid) => {
+            if (err) {throw new Error(err);}
+            this.emit(this.events.PLACE_NEW_BID, auctionBid);
+        });
 	};
 };
 
