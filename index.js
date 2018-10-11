@@ -6,6 +6,7 @@ const port = 3000;
 const ArtistService = require('./services/artistService');
 const ArtService = require('./services/artService');
 const AuctionService = require('./services/auctionService');
+const CustomerService = require('./services/customerService');
 
 router.get('/arts', (req, res) => {
     const artService = new ArtService();
@@ -73,15 +74,35 @@ router.post('/artists', (req, res) => {
 });
 
 router.get('/customers', (req, res) => {
-    //TODO: implement get all customers
+    const customerService = new CustomerService();
+
+    customerService.on(customerService.events.GET_ALL_CUSTOMERS, data => {
+        res.json(data);
+    });
+
+    customerService.getAllCustomers();
 });
 
 router.get('/customers/:id', (req, res) => {
-    //TODO: implement get customers by id
+    const {id} = req.params;
+    const customerService = new CustomerService();
+
+    customerService.on(customerService.events.GET_CUSTOMER_BY_ID, data => {
+        res.json(data);
+    });
+
+    customerService.getCustomerById(id);
 });
 
 router.post('/customers', (req, res) => {
-    //TODO: implement create new customer
+    const {body} = req;
+    const customerService = new CustomerService();
+
+    customerService.on(customerService.events.CREATE_CUSTOMER, data => {
+        res.json(data);
+    });
+
+    customerService.createCustomer(body);
 });
 
 router.get('/customers/:id/auction-bids', (req, res) => {
@@ -110,7 +131,14 @@ router.get('/auctions/:id', (req, res) => {
 });
 
 router.get('/auctions/:id/winner', (req, res) => {
-    //TODO: implement get winner of certain auction
+    const {id} = req.params;
+    const auctionService = new AuctionService();
+
+    auctionService.on(auctionService.events.GET_AUCTION_WINNER, data => {
+        res.json(data);
+    });
+
+    auctionService.getAuctionWinner(id);
 });
 
 router.post('/auctions', (req, res) => {
