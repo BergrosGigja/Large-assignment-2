@@ -1,5 +1,5 @@
 const EventEmitter = require('events');
-const { Auction } = require('../data/db');
+const { Auction, Customer } = require('../data/db');
 
 class AuctionService extends EventEmitter {
 	constructor() {
@@ -29,8 +29,12 @@ class AuctionService extends EventEmitter {
 	};
 
 	getAuctionWinner(auctionId) {
-		// Your implementation goes here
-        // Should emit a GET_AUCTION_WINNER event when the data is available
+		Auction.findById(auctionId, (err, auction) => {
+			if (err) {throw new Error(err);}
+			Customer.findOne({ _id: auction.auctionWinner }, (err, customer) => {
+				this.emit(this.events.GET_AUCTION_WINNER, customer);
+			});
+        });
 	};
 
 	createAuction(auction) {
