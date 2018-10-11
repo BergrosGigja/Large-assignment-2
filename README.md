@@ -36,17 +36,17 @@ Below the functionality of the assignment is described:
   which holds the highest bid. If the auction had no bids, it should return a status code 200 (OK) 
   with the message: ‘This auction had no bids.’.**
 - [ ] /api/auctions [POST] - Create a new auction (see how model should look like in Model section). 
-  The art id provided within the body must be a **valid art id** with its property isAuctionItem set 
-  to true. **If the isAuctionItem is set to false, the web service should return a status code 
-  412** (Precondition failed).
+  **The art id provided within the body must be a valid art id with its property isAuctionItem set **
+  **to true. If the isAuctionItem is set to false, the web service should return a status code **
+  **412 (Precondition failed).**
 - [x] /api/auctions/:id/bids [GET] - Gets all auction bids associated with an auction
-- [x] /api/auctions/:id/bids [POST] - Creates a new auction bid (see how model should look like in 
-  Model section). Auction bids must be higher than the minimum price and must also be higher 
-  than the current highest bid. If the auction bid price is lower than the minimum price or 
-  current highest bid, the web service should return a status code 412 (Precondition failed). 
-  If the auction has already passed its end date, the web service should return a status 
-  code 403 (Forbidden). As a side-effect the auctionWinner property in the Auction schema 
-  should be updated to the latest highest bidder.
+- [ ] /api/auctions/:id/bids [POST] - Creates a new auction bid (see how model should look like in 
+  Model section). **Auction bids must be higher than the minimum price and must also be higher **
+  **than the current highest bid. If the auction bid price is lower than the minimum price or **
+  **current highest bid, the web service should return a status code 412 (Precondition failed). **
+  **If the auction has already passed its end date, the web service should return a status **
+  **code 403 (Forbidden). As a side-effect the auctionWinner property in the Auction schema **
+  **should be updated to the latest highest bidder.**
 
 ### Services (all service implementations should reside in services/ folder for each corresponding service)
 - [x] artService - Should be used to get data from the database using the schema Art and tailor the 
