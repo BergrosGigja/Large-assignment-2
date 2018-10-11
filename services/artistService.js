@@ -1,5 +1,9 @@
 const EventEmitter = require('events');
+<<<<<<< Updated upstream
 const { Artist } = require('../data/db');
+=======
+const {Artist} = require('../data/db');
+>>>>>>> Stashed changes
 
 class ArtistService extends EventEmitter {
     constructor() {
