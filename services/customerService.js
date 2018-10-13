@@ -26,11 +26,12 @@ class CustomerService extends EventEmitter {
             else { this.emit(this.events.GET_CUSTOMER_BY_ID, customer); }
         });
     };
-    //TODO 
+    
     getCustomerAuctionBids(_customerId) {
         AuctionBid.find({customerId: _customerId}, (err, auctionBids) => {
-			if (err) {throw new Error(err);}
-            this.emit(this.events.GET_CUSTOMER_AUCTION_BIDS, auctionBids);
+            if (err) { this.emit('error', { statusCode: 500, message: err }); }
+            else if (!auctionBids) { this.emit('error', { statusCode: 404, message: 'Not found' }); }
+            else { this.emit(this.events.GET_CUSTOMER_AUCTION_BIDS, auctionBids); }
         });
     };
 
