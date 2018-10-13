@@ -13,7 +13,7 @@ class ArtService extends EventEmitter {
     getAllArts() {
         Art.find({}, (err, arts) => {
             if (err) { this.emit('error', { statusCode: 500, message: err }); }
-            else if (!arts) { this.emit('error', { statusCode: 404, message: 'Not found' }); }
+            else if (arts.length == 0) { this.emit('error', { statusCode: 404, message: 'Not found' }); }
             else { this.emit(this.events.GET_ALL_ARTS, arts); }
         });
     };

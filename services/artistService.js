@@ -14,7 +14,7 @@ class ArtistService extends EventEmitter {
     getAllArtists() {
         Artist.find({}, (err, artists) => {
             if (err) { this.emit('error', { statusCode: 500, message: err }); }
-            else if (!artists) { this.emit('error', { statusCode: 404, message: 'Not found' }); }
+            else if (artists.length == 0) { this.emit('error', { statusCode: 404, message: 'Not found' }); }
             else { this.emit(this.events.GET_ALL_ARTISTS, artists); }
         });
     };
