@@ -16,257 +16,192 @@ Object.keys(connection.collections).forEach(collection => {
 });
 
 Artist.insertMany([
-    { name: 'Salvador Dali',
-      nickname: 'Dalvador',
-      address: 'Sunny State', 
-      memberSince: Date.now()
+    { name: 'Man Ray',
+      nickname: 'Rayman',
+      address: 'California 1', 
+      memberSince: '2016-10-15T00:46:14.651Z'
     },
-    { name: 'Hermann picasso',
-      nickname: 'Hundurinn',
-      address: 'Klakinn 5, 107 rvk', 
-      memberSince: Date.now() },
-
-    { name: 'Emil Kahlo',
-      nickname: 'Street 5, Spain or Argentina',
-      address: 'Unibrow', 
-      memberSince: Date.now() },
-
-    { name: 'Thorfinnur Van Gogh',
-      nickname: 'Goggi Mega',
-      address: 'Address numero 5, Netherlands', 
-      memberSince: Date.now() },
-
-    { name: 'Bob Ross',
-      nickname: 'Meistari',
-      address: 'Downingstreet 10, london', 
-      memberSince: Date.now() }
+    { name: 'Pablo Picasso',
+      nickname: 'Paco',
+      address: 'Italystreet 12', 
+      memberSince: Date.now() 
+    },
+    { name: 'Andy Warhol',
+      nickname: 'Andy peacehol',
+      address: 'Beverlyhills 90210', 
+      memberSince: '2017-10-05T00:46:14.651Z'
+    },
+    { name: 'Salvador Dali',
+      nickname: 'Sali',
+      address: 'Helloworld 2', 
+      memberSince: Date.now() 
+    },
+    { name: 'Simone Martini',
+      nickname: 'Shaken not stirred',
+      address: 'upstreet 900', 
+      memberSince: Date.now() 
+    }
 ], err => {
     if (err) { throw new Error(err); }
-    bar.update(25);
+    bar.update(20);
     Artist.find({}, (err, artists) => {
         if (err) { throw new Error(err); }
-        bar.update(35);
+        bar.update(30);
         Art.insertMany([
             {
-                title: 'Painting of a mountain',
-                artistId: getResourceIdByName(artists, 'name', 'Bob Ross'),
+                title: 'Is it a woman or a doge? 1',
+                artistId: getResourceIdByName(artists, 'name', 'Man Ray'),
                 date: Date.now(),
-                images: 'https://i.ebayimg.com/images/g/hQwAAOSwy~BaNBuc/s-l640.jpg',
-                description: 'Nice painting and a nicer man',
+                images: 'https://pics.me.me/wow-much-painting-30018086.png',
+                description: 'Confusing but nice painting',
+                isAuctionItem: true
+            },
+            {
+                title: 'Is it a woman or a doge? 2',
+                artistId: getResourceIdByName(artists, 'name', 'Man Ray'),
+                date: Date.now(),
+                images: 'https://pics.me.me/wow-much-painting-30018086.png',
+                description: 'Confusing but nice painting' ,
                 isAuctionItem: false
             },
             {
-                title: 'Painting of a bike',
-                artistId: getResourceIdByName(artists, 'name', 'Hermann picasso'),
+                title: 'Is it a woman or a doge? 3',
+                artistId: getResourceIdByName(artists, 'name', 'Pablo Picasso'),
                 date: Date.now(),
-                images: 'https://i.ebayimg.com/images/g/hQwAAOSwy~BaNBuc/s-l640.jpg',
-                description: 'Ugly painting do not buy this' ,
+                images: 'https://pics.me.me/wow-much-painting-30018086.png',
+                description: 'Confusing but nice painting' ,
+                isAuctionItem: true
+            },
+            {
+                title: 'Is it a woman or a doge? 4',
+                artistId: getResourceIdByName(artists, 'name', 'Pablo Picasso'),
+                date: Date.now(),
+                images: 'https://pics.me.me/wow-much-painting-30018086.png',
+                description: 'Confusing but nice painting' ,
                 isAuctionItem: false
             },
             {
-                title: 'Painting of a store',
-                artistId: getResourceIdByName(artists, 'name', 'Hermann picasso'),
+                title: 'Is it a woman or a doge? 5',
+                artistId: getResourceIdByName(artists, 'name', 'Andy Warhol'),
                 date: Date.now(),
-                images: 'https://i.ebayimg.com/images/g/hQwAAOSwy~BaNBuc/s-l640.jpg',
-                description: 'Nice painting',
+                images: 'https://pics.me.me/wow-much-painting-30018086.png',
+                description: 'Confusing but nice painting' ,
+                isAuctionItem: true
+            },
+            {
+                title: 'Is it a woman or a doge? 6',
+                artistId: getResourceIdByName(artists, 'name', 'Andy Warhol'),
+                date: Date.now(),
+                images: 'https://pics.me.me/wow-much-painting-30018086.png',
+                description: 'Confusing but nice painting' ,
                 isAuctionItem: false
             },
             {
-                title: 'Painting of a French Woman',
-                artistId: getResourceIdByName(artists, 'name', 'Emil Kahlo'),
-                date: Date.now(),
-                images: 'https://i.ebayimg.com/images/g/hQwAAOSwy~BaNBuc/s-l640.jpg',
-                description: 'Ok painting',
-                isAuctionItem: false
-            },
-            {
-                title: 'Painting of a Big Ben',
-                artistId: getResourceIdByName(artists, 'name', 'Emil Kahlo'),
-                date: Date.now(),
-                images: 'https://i.ebayimg.com/images/g/hQwAAOSwy~BaNBuc/s-l640.jpg',
-                description: 'Big Ben with unibrows',
-                isAuctionItem: false
-            },
-            {
-                title: 'Painting of a lizard',
-                artistId: getResourceIdByName(artists, 'name', 'Thorfinnur Van Gogh'),
-                date: Date.now(),
-                images: 'https://i.ebayimg.com/images/g/hQwAAOSwy~BaNBuc/s-l640.jpg',
-                description: 'Cool Painting',
-                isAuctionItem: false
-            },
-            {
-                title: 'Painting of a me',
-                artistId: getResourceIdByName(artists, 'name', 'Thorfinnur Van Gogh'),
-                date: Date.now(),
-                images: 'https://i.ebayimg.com/images/g/hQwAAOSwy~BaNBuc/s-l640.jpg',
-                description: 'Cool Painting',
-                isAuctionItem: false
-            },
-            {
-                title: 'Painting of a University of Reykjavik',
-                artistId: getResourceIdByName(artists, 'name', 'Thorfinnur Van Gogh'),
-                date: Date.now(),
-                images: 'https://i.ebayimg.com/images/g/hQwAAOSwy~BaNBuc/s-l640.jpg',
-                description: 'Cool Painting',
-                isAuctionItem: false
-            },
-            {
-                title: 'Painting of a tree',
-                artistId: getResourceIdByName(artists, 'name', 'Thorfinnur Van Gogh'),
-                date: Date.now(),
-                images: 'https://i.ebayimg.com/images/g/hQwAAOSwy~BaNBuc/s-l640.jpg',
-                description: 'Cool stuff',
-                isAuctionItem: false
-            },
-            {
-                title: 'Painting of an orange',
+                title: 'Is it a woman or a doge? 7',
                 artistId: getResourceIdByName(artists, 'name', 'Salvador Dali'),
                 date: Date.now(),
-                images: 'https://i.ebayimg.com/images/g/hQwAAOSwy~BaNBuc/s-l640.jpg',
-                description: 'Yeahhhh, this is a description',
+                images: 'https://pics.me.me/wow-much-painting-30018086.png',
+                description: 'Confusing but nice painting' ,
+                isAuctionItem: true
+            },
+            {
+                title: 'Is it a woman or a doge? 8',
+                artistId: getResourceIdByName(artists, 'name', 'Salvador Dali'),
+                date: Date.now(),
+                images: 'https://pics.me.me/wow-much-painting-30018086.png',
+                description: 'Confusing but nice painting' ,
                 isAuctionItem: false
             },
             {
-                title: 'Painting of a chair',
-                artistId: getResourceIdByName(artists, 'name', 'Salvador Dali'),
+                title: 'Is it a woman or a doge? 9',
+                artistId: getResourceIdByName(artists, 'name', 'Simone Martini'),
                 date: Date.now(),
-                images: 'https://i.ebayimg.com/images/g/hQwAAOSwy~BaNBuc/s-l640.jpg',
-                description: 'Yeahhhh, this is a description',
-                isAuctionItem: false
+                images: 'https://pics.me.me/wow-much-painting-30018086.png',
+                description: 'Confusing but nice painting' ,
+                isAuctionItem: true
             },
             {
-                title: 'Title painting yeahhh',
-                artistId: getResourceIdByName(artists, 'name', 'Salvador Dali'),
+                title: 'Is it a woman or a doge? 10',
+                artistId: getResourceIdByName(artists, 'name', 'Simone Martini'),
                 date: Date.now(),
-                images: 'https://i.ebayimg.com/images/g/hQwAAOSwy~BaNBuc/s-l640.jpg',
-                description: 'Yeahhhh, this is a description',
-                isAuctionItem: false
-            },
-            {
-                title: 'Painting of a cat',
-                artistId: getResourceIdByName(artists, 'name', 'Salvador Dali'),
-                date: Date.now(),
-                images: 'https://i.ebayimg.com/images/g/hQwAAOSwy~BaNBuc/s-l640.jpg',
-                description: 'Yeahhhh, this is a description',
-                isAuctionItem: false
-            },
-            {
-                title: 'Painting of a dog',
-                artistId: getResourceIdByName(artists, 'name', 'Salvador Dali'),
-                date: Date.now(),
-                images: 'https://i.ebayimg.com/images/g/hQwAAOSwy~BaNBuc/s-l640.jpg',
-                description: 'Yeahhhh, this is a description',
-                isAuctionItem: false
-            },
-            {
-                title: 'Painting of some stuff',
-                artistId: getResourceIdByName(artists, 'name', 'Salvador Dali'),
-                date: Date.now(),
-                images: 'https://i.ebayimg.com/images/g/hQwAAOSwy~BaNBuc/s-l640.jpg',
-                description: 'DEEEEscription of a painting :) ',
+                images: 'https://pics.me.me/wow-much-painting-30018086.png',
+                description: 'Confusing but nice painting' ,
                 isAuctionItem: false
             }
         ], err => {
             if (err) { throw new Error(err); }
-            bar.update(65);
+            bar.update(40);
             Art.find({}, (err, arts) => {
                 if (err) { throw new Error(err); }
-                bar.update(80);
+                bar.update(50);
                 Customer.insertMany([
                     {
-                        name: 'Mr Big Bucks',
-                        username: 'Biggie',
-                        email: 'Big@bucks.com',
-                        address: 'Big street 5'
+                        name: 'Mr Bill Gates',
+                        username: 'Billi',
+                        email: 'bill@bill.com',
+                        address: 'high gates 56'
                     },
                     {
-                        name: 'Mr Big Spender',
-                        username: 'spender',
-                        email: 'spender@bucks.com',
+                        name: 'Jeff Bezos',
+                        username: 'Jeffi B',
+                        email: 'jeff@jeff.com',
                         address: 'spender street 5'
                     },
                     {
-                        name: 'Money man',
-                        username: 'MoneyIsKey',
-                        email: 'Money@bucks.com',
-                        address: 'Moneystreet 5'
+                        name: 'Amancio Ortega',
+                        username: 'Ammi',
+                        email: 'amancio@amancio.com',
+                        address: 'manciostreet 80009'
                     },
                     {
-                        name: 'Mr capitalism guy',
-                        username: 'caps',
-                        email: 'caps@bucks.com',
-                        address: 'caps street 5'
+                        name: 'Carlos Slim',
+                        username: 'Slim shady',
+                        email: 'carlos@carlos.com',
+                        address: 'carlostreet 5'
                     },
                     {
-                        name: 'Mr Money talks',
-                        username: 'talker',
-                        email: 'talk@bucks.com',
-                        address: 'talk street 5'
-                    },
-                    {
-                        name: 'Bjorgolfur Thor',
-                        username: 'Bjoggi',
-                        email: 'bjoggi@bucks.com',
-                        address: 'bjoggi street 5'
+                        name: 'Bernard Arnault',
+                        username: 'Benni',
+                        email: 'bernard@bernard.com',
+                        address: 'thisstreet 6009'
                     } ], err => {
                         if (err) { throw new Error(err); }
-                        bar.update(65);
+                        bar.update(70);
                         Customer.find({}, (err, customers) => {
                             if (err) { throw new Error(err); }
                             bar.update(80);
                             Auction.insertMany([
                                 {
-                                    artId: getResourceIdByName(arts, 'title', 'Painting of a mountain'),
-                                    minimumPrice: 1000,
-                                    endDate: Date.now(),
-                                    auctionWinner: getResourceIdByName(customers, 'name', 'Bjorgolfur Thor')
+                                    artId: getResourceIdByName(arts, 'title', 'Is it a woman or a doge? 1'),
+                                    minimumPrice: 1500,
+                                    endDate: Date.now()
                                 },
                                 {
-                                    artId: getResourceIdByName(arts, 'title', 'Painting of a cat'),
-                                    minimumPrice: 1000,
-                                    endDate: Date.now(),
-                                    auctionWinner: getResourceIdByName(customers, 'name', 'Bjorgolfur Thor')
+                                    artId: getResourceIdByName(arts, 'title', 'Is it a woman or a doge? 3'),
+                                    endDate: '2018-10-15T00:46:14.651Z'
                                 },
                                 {
-                                    artId: getResourceIdByName(arts, 'title', 'Painting of a French Woman'),
-                                    minimumPrice: 1000,
-                                    endDate: Date.now(),
-                                    auctionWinner: getResourceIdByName(customers, 'name', 'Mr Big Spender')
+                                    artId: getResourceIdByName(arts, 'title', 'Is it a woman or a doge? 5'),
+                                    minimumPrice: 6000,
+                                    endDate: '2019-10-15T00:46:14.651Z'
                                 },
                                 {
-                                    artId: getResourceIdByName(arts, 'title', 'Painting of a lizard'),
-                                    minimumPrice: 1000,
-                                    endDate: Date.now(),
-                                    auctionWinner: getResourceIdByName(customers, 'name', 'Mr Money talks')
+                                    artId: getResourceIdByName(arts, 'title', 'Is it a woman or a doge? 7'),
+                                    endDate: '2018-11-15T00:46:14.651Z'
                                 },
                                 {
-                                    artId: getResourceIdByName(arts, 'title', 'Painting of some stuff'),
-                                    minimumPrice: 1000,
-                                    endDate: Date.now(),
-                                    auctionWinner: getResourceIdByName(customers, 'name', 'Mr Money talks')
-                                },
-                                {
-                                    artId: getResourceIdByName(arts, 'title', 'Painting of a dog'),
-                                    minimumPrice: 1000,
-                                    endDate: Date.now(),
-                                    auctionWinner: getResourceIdByName(customers, 'name', 'Mr Big Bucks')
-                                },
-                                {
-                                    artId: getResourceIdByName(arts, 'title', 'Painting of an orange'),
-                                    minimumPrice: 1000,
-                                    endDate: Date.now(),
-                                    auctionWinner: getResourceIdByName(customers, 'name', 'Mr capitalism guy')
-                                },
-                            ],err => {
-                                if (err) { throw new Error(err); }
-                                bar.update(100);
-                                bar.stop();
-                                connection.close();
-                            });
+                                    artId: getResourceIdByName(arts, 'title', 'Is it a woman or a doge? 9'),
+                                    minimumPrice: 700,
+                                    endDate: '2018-10-17T00:46:14.651Z'
+                                } ],err => {
+                                    if (err) { throw new Error(err); }
+                                    bar.update(100);
+                                    bar.stop();
+                                    connection.close();
+                                });
+                        });
+                    });
+                });
             });
         });
-    });
-});
-});
 });

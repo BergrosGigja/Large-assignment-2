@@ -35,7 +35,7 @@ router.get('/arts/:id', (req, res) => {
 
 router.post('/arts', (req, res) => {
     const {body} = req;
-    console.log(body);
+
     const artService = new ArtService();
 
     artService.on('error', err => res.status(err.statusCode).send(err.message))
@@ -127,6 +127,8 @@ router.get('/customers/:id/auction-bids', (req, res) => {
     const {id} = req.params;
     const customerService = new CustomerService();
 
+    customerService.on('error', err => res.status(err.statusCode).send(err.message))
+
     customerService.on(customerService.events.GET_CUSTOMER_AUCTION_BIDS, data => {
         res.json(data);
     });
@@ -136,6 +138,8 @@ router.get('/customers/:id/auction-bids', (req, res) => {
 
 router.get('/auctions', (req, res) => {
     const auctionService = new AuctionService();
+
+    auctionService.on('error', err => res.status(err.statusCode).send(err.message))
 
     auctionService.on(auctionService.events.GET_ALL_AUCTIONS, data => {
         res.json(data);
@@ -148,6 +152,8 @@ router.get('/auctions/:id', (req, res) => {
     const {id} = req.params;
     const auctionService = new AuctionService();
 
+    auctionService.on('error', err => res.status(err.statusCode).send(err.message))
+
     auctionService.on(auctionService.events.GET_AUCTION_BY_ID, data => {
         res.json(data);
     });
@@ -159,6 +165,8 @@ router.get('/auctions/:id/winner', (req, res) => {
     const {id} = req.params;
     const auctionService = new AuctionService();
 
+    auctionService.on('error', err => res.status(err.statusCode).send(err.message))
+
     auctionService.on(auctionService.events.GET_AUCTION_WINNER, data => {
         res.json(data);
     });
@@ -168,18 +176,24 @@ router.get('/auctions/:id/winner', (req, res) => {
 
 router.post('/auctions', (req, res) => {
     const {body} = req;
+    const artId = req.body.artId;
+    
     const auctionService = new AuctionService();
+
+    auctionService.on('error', err => res.status(err.statusCode).send(err.message))
 
     auctionService.on(auctionService.events.CREATE_AUCTION, data => {
         res.json(data);
     });
 
-    auctionService.createAuction(body);
+    auctionService.createAuction(body, artId);
 });
 
 router.get('/auctions/:id/bids', (req, res) => {
     const {id} = req.params;
     const auctionService = new AuctionService();
+
+    auctionService.on('error', err => res.status(err.statusCode).send(err.message))
 
     auctionService.on(auctionService.events.GET_AUCTION_BIDS_WITHIN_AUCTION, data => {
         res.json(data);
@@ -193,6 +207,8 @@ router.post('/auctions/:id/bids', (req, res) => {
     const customerId = req.body.customerId;
     const price = req.body.price;
     const auctionService = new AuctionService();
+
+    auctionService.on('error', err => res.status(err.statusCode).send(err.message))
 
     auctionService.on(auctionService.events.PLACE_NEW_BID, data => {
         res.json(data);
