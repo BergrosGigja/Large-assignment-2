@@ -22,16 +22,22 @@ class CustomerService extends EventEmitter {
     getCustomerById(id) {
         Customer.findById(id, (err, customer) => {
             if (err) { this.emit('error', { statusCode: 500, message: err }); }
-            else if (!customer) { this.emit('error', { statusCode: 404, message: 'Not found' }); }
+            else if (!customer) { this.emit('error', { statusCode: 404, message: 'Customer Not found' }); }
             else { this.emit(this.events.GET_CUSTOMER_BY_ID, customer); }
         });
     };
     
     getCustomerAuctionBids(_customerId) {
-        AuctionBid.find({customerId: _customerId}, (err, auctionBids) => {
+        Customer.findById(_customerId, (err, customer) => {
             if (err) { this.emit('error', { statusCode: 500, message: err }); }
-            else if (!auctionBids) { this.emit('error', { statusCode: 404, message: 'Not found' }); }
-            else { this.emit(this.events.GET_CUSTOMER_AUCTION_BIDS, auctionBids); }
+            else if (!customer) { this.emit('error', { statusCode: 404, message: 'Customer Not found' }); }
+            else {
+                AuctionBid.find({customerId: _customerId}, (err, auctionBids) => {
+                    if (err) { this.emit('error', { statusCode: 500, message: err }); }
+                    else if (auctionBids.length == 0) { this.emit('error', { statusCode: 404, message: 'Customer bids Not found' }); }
+                    else { this.emit(this.events.GET_CUSTOMER_AUCTION_BIDS, auctionBids); }
+                });
+            }
         });
     };
 

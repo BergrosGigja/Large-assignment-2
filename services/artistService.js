@@ -22,7 +22,7 @@ class ArtistService extends EventEmitter {
     getArtistById(id) {
         Artist.findById(id, (err, artist) => {
             if (err) { this.emit('error', { statusCode: 500, message: err }); }
-            else if (!result) { this.emit('error', { statusCode: 404, message: 'Not found' }); }
+            else if (!artist) { this.emit('error', { statusCode: 404, message: 'Artist Not found' }); }
             else { this.emit(this.events.GET_ARTIST_BY_ID, artist); }
         });
     };
