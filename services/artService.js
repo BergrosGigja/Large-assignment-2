@@ -19,10 +19,10 @@ class ArtService extends EventEmitter {
     };
 
     getArtById(id) {
-        Art.findById(id, (err, result) => {
+        Art.findById(id, (err, art) => {
             if (err) { this.emit('error', { statusCode: 500, message: err }); }
-            else if (!result) { this.emit('error', { statusCode: 404, message: 'Not found' }); }
-            else { this.emit(this.events.GET_ART_BY_ID, result); }
+            else if (!art) { this.emit('error', { statusCode: 404, message: 'Art Not found' }); }
+            else { this.emit(this.events.GET_ART_BY_ID, art); }
         });
     };
 
